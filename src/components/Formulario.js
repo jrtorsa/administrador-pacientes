@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import uuid from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 
 const Formulario = () => {
   const [cita, actializarCita] = useState({
@@ -41,7 +41,7 @@ const Formulario = () => {
     actualizarError(false);
 
     //asignar id
-    cita.id = uuid();
+    cita.id = uuidv4();
     console.log(cita);
     //crear cita
 
