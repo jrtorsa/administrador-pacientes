@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Formulario from "./components/Formulario";
 import Cita from "./components/Cita";
 
@@ -12,6 +12,14 @@ function App() {
     guardarCitas([...citas, cita]);
   };
 
+  // funcion que elimina cita por su id
+  const eliminarCita = (id) => {
+    const nuevasCitas = citas.filter((cita) => cita.id !== id);
+    guardarCitas(nuevasCitas);
+  };
+
+  // mensaje condicional
+  const titulo = citas.length === 0 ? "No hay citas" : "Administra tus citas";
   return (
     <>
       <h1>Administrador de Pacientes</h1>;
@@ -21,9 +29,9 @@ function App() {
             <Formulario crearCita={crearCita} />
           </div>
           <div className="one-half column">
-            <h2>Administra tus Citas</h2>
+            <h2>{titulo}</h2>
             {citas.map((cita) => (
-              <Cita key={cita.id} cita={cita} />
+              <Cita key={cita.id} cita={cita} eliminarCita={eliminarCita} />
             ))}
           </div>
         </div>
